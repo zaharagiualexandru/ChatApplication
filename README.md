@@ -164,6 +164,15 @@ For the interface to display correctly inside the Unity Editor, the Game view sh
 ```text
 800 x 800
 ```
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="Images/ChatApplication.png" width="800" />
+</p>
+
+---
 
 ## 💻 Technologies Used
 
