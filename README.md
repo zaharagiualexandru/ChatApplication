@@ -169,8 +169,8 @@ For the interface to display correctly inside the Unity Editor, the Game view sh
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="Images/ChatApp1.png" width="600" />
-   <img src="Images/ChatApp2.png" width="600" />
+   <img src="Images/ChatApp1.png" width="48%" />
+   <img src="Images/ChatApp2.png" width="48%" />
 </p>
 
 ---
