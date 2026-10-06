@@ -2,7 +2,7 @@
 
 **Chat Application** is a simple client/server messaging application built in **Unity / C#**.
 
-The project allows one user to host a server while another user connects as a client using the server's **IP address**. Once connected, the two users can send messages to each other.
+The project allows one user to host a server while another user connects as a client using the server's **IP address**. Once connected, both sides can send messages to each other.
 
 The project was created as an introduction to **network communication, client/server architecture and asynchronous application behaviour in C#**.
 
@@ -17,7 +17,15 @@ When the application starts, the user can choose to either:
 - 🖥️ **Start Server**
 - 💻 **Start Client**
 
-If starting a client, the user enters the IP address of the machine running the server.
+The **server must always be started first** before a client can connect.
+
+For local testing on the same computer, the application can use:
+
+```text
+127.0.0.1
+```
+
+This allows the Unity Editor and a standalone build of the application to communicate with each other.
 
 ```text
 Server
@@ -29,8 +37,6 @@ Client
 ```
 
 Once the connection has been established, the server and client can exchange messages through the chat interface.
-
-Both machines need to be able to communicate over the same network/IP connection.
 
 ---
 
@@ -49,7 +55,7 @@ Start           Enter IP Address
  │               │
  └───────┬───────┘
          ↓
-    Establish Connection
+   Establish Connection
          ↓
       Chat Screen
          ↓
@@ -61,7 +67,7 @@ Start           Enter IP Address
 ## ✨ Features
 
 - Client/server architecture
-- IP-based connection
+- IP-based connections
 - Server hosting
 - Client connection
 - Two-way messaging
@@ -70,6 +76,7 @@ Start           Enter IP Address
 - Separate client and server behaviour
 - Unity UI
 - C# networking logic
+- Local testing using `127.0.0.1`
 
 ---
 
@@ -84,6 +91,8 @@ The server acts as the host of the connection.
 Once started, it waits for a client to connect.
 
 After a connection has been established, the server can send and receive messages.
+
+The server must be running before the client attempts to connect.
 
 ### 💻 Client
 
@@ -144,9 +153,17 @@ Enter IP Address...
 [ Start Client ]
 ```
 
-A server user can start hosting the application, while a client enters the correct IP address before connecting.
+A server user starts hosting the application first.
+
+The client then enters the correct IP address and connects to the running server.
 
 Once connected, the application moves to the chat interface where messages can be exchanged.
+
+For the interface to display correctly inside the Unity Editor, the Game view should be set to:
+
+```text
+800 x 800
+```
 
 ---
 
@@ -184,53 +201,93 @@ In particular, I worked with:
 - Updating Unity UI from networking systems
 - Structuring a Unity project around networking rather than gameplay
 
-The project helped me better understand the basic architecture behind applications where multiple machines need to communicate with each other.
+The project helped me better understand the basic architecture behind applications where multiple running programs need to communicate with each other.
 
 ---
 
 ## 📦 Running the Project
 
-To open the project locally:
+### Opening the Project
 
 1. Clone this repository.
 2. Open **Unity Hub**.
 3. Select **Add project from disk**.
 4. Select the cloned `ChatApplication` folder.
 5. Open the project.
-6. Open the main `ChatAppScene`.
-7. Press **Play**.
-
-To test communication between two machines:
-
-1. Start the application as the **Server** on one machine.
-2. Find the IP address of the server machine.
-3. Open the application on another machine.
-4. Enter the server's IP address.
-5. Select **Start Client**.
-6. Once connected, both sides can exchange messages.
+6. Open the `Scenes` folder.
+7. Double-click **ChatAppScene**.
+8. Set the Unity Game view resolution to **800 x 800**.
+9. Press **Play**.
 
 ---
 
-## 📌 Project Status
+### 🖥️ Testing Locally
 
-**Completed**
+The easiest way to test the application is to run one instance inside the **Unity Editor** and another as a **standalone build**.
 
-This project was developed as a networking-focused Unity project and is preserved as part of my programming portfolio.
+For local testing, use:
+
+```text
+127.0.0.1
+```
+
+### Step 1 — Start the Server
+
+Inside the Unity Editor:
+
+1. Enter `127.0.0.1` into the IP input field.
+2. Click **Start Server**.
+
+> The server must always be started before the client.
+
+### Step 2 — Start the Client
+
+Open the standalone build of the application.
+
+1. Enter `127.0.0.1` into the IP input field.
+2. Click **Start Client**.
+3. The client should connect to the running server.
+
+Once connected, messages can be sent from both the server and client.
+
+```text
+Unity Editor
+   SERVER
+     │
+     │ 127.0.0.1
+     │
+     ▼
+Standalone Build
+   CLIENT
+```
+
+The setup can also be reversed:
+
+```text
+Standalone Build
+   SERVER
+     │
+     │ 127.0.0.1
+     │
+     ▼
+Unity Editor
+   CLIENT
+```
+
+The important requirement is that the **server is started first** before the client attempts to connect.
 
 ---
 
-## 👤 Developer
+### 🌐 Connecting Using an IP Address
 
-**Alex**
+The client connects by entering the IP address of the machine running the server.
 
-Games Programmer based in London.
+```text
+Server Machine
+      │
+      │ Server IP Address
+      ▼
+Client Machine
+```
 
-🎮 Unity / C#  
-⚙️ Unreal Engine 5 / C++  
-🕹️ Gameplay Programming  
-🛠️ Git / GitHub  
-🧊 Blender  
-
-[GitHub Profile](https://github.com/zaharagiualexandru)  
-[itch.io](https://alexziou.itch.io/)  
-[LinkedIn](YOUR-LINKEDIN-LINK)
+The server must already be running before the client attempts to connect.
